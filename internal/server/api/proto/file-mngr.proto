@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg/api";
+
+service FileMngr {
+  rpc SaveFile(SaveFileRequest) returns (SaveFileResponse) {}
+  rpc GetFilesInfo(GetFilesInfoRequest) returns (GetFilesInfoResponse) {}
+  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse) {}
+}
+
+message SaveFileRequest {
+  string name = 1;
+  bytes data = 2;
+}
+
+message SaveFileResponse {
+}
+
+message FileInfo {
+  string name = 1;
+  bool hasBirthTime = 2;
+  google.protobuf.Timestamp birthTime = 3;
+  bool hasChangeTime = 4;
+  google.protobuf.Timestamp changeTime = 5;
+}
+
+message GetFilesInfoRequest{
+
+}
+
+message GetFilesInfoResponse {
+  repeated FileInfo filesInfo = 1;
+}
+
+message GetFilesRequest {
+
+}
+
+message GetFilesResponse {
+  repeated bytes files = 1;
+}
+
+
+
